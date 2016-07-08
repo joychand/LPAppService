@@ -1,0 +1,12 @@
+E:\working_repo\LPAppService\bin\LPAppService.dll.config
+E:\working_repo\LPAppService\bin\LPAppService.dll
+E:\working_repo\LPAppService\bin\LPAppService.pdb
+E:\working_repo\LPAppService\obj\Debug\eSiroi.Resource.Migrations.initialLP.resources
+E:\working_repo\LPAppService\obj\Debug\eSiroi.Resource.Migrations._2ndinitial.resources
+E:\working_repo\LPAppService\obj\Debug\eSiroi.Resource.Migrations.addownno2.resources
+E:\working_repo\LPAppService\obj\Debug\eSiroi.Resource.Migrations.LandValueadded.resources
+E:\working_repo\LPAppService\obj\Debug\eSiroi.Resource.Migrations.conersionofownnotype.resources
+E:\working_repo\LPAppService\obj\Debug\LPAppService.Migrations.Initial_Create2.resources
+E:\working_repo\LPAppService\obj\Debug\LPAppService.csproj.GenerateResource.Cache
+E:\working_repo\LPAppService\obj\Debug\LPAppService.dll
+E:\working_repo\LPAppService\obj\Debug\LPAppService.pdb
