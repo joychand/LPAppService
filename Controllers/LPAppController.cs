@@ -24,9 +24,11 @@ using System.Net.Http.Headers;
 using System.Text;
 using Aspose.Pdf.Generator;
 using System.Collections.Specialized;
+using LPAppServiceHMACAuthentication.Filters;
 
 namespace LPAppService.Controllers
 {
+   [lpHMACAuthenticationAttribute]
     [RoutePrefix("api/LPAppController")]
     public class LPAppController : ApiController
     {
