@@ -20,7 +20,7 @@ namespace LPAppServiceHMACAuthentication.Filters
     public class lpHMACAuthenticationAttribute : Attribute, IAuthenticationFilter
     {
         private static Dictionary<string, string> allowedApps = new Dictionary<string, string>();
-        private readonly UInt64 requestMaxAgeInSeconds = 300;  //5 mins
+        private readonly UInt64 requestMaxAgeInSeconds = 300000;  //5 mins
         private readonly string authenticationScheme = "amx";
 
         public lpHMACAuthenticationAttribute()
@@ -129,11 +129,12 @@ namespace LPAppServiceHMACAuthentication.Filters
 
             var secretKeyBytes = Convert.FromBase64String(sharedKey);
 
-            byte[] signature = Encoding.UTF8.GetBytes(data);
+            byte[] signature = Encoding.Unicode.GetBytes(data);
 
             using (HMACSHA256 hmac = new HMACSHA256(secretKeyBytes))
             {
                 byte[] signatureBytes = hmac.ComputeHash(signature);
+                var requestsignature = Convert.ToBase64String(signatureBytes);
 
                 return (incomingBase64Signature.Equals(Convert.ToBase64String(signatureBytes), StringComparison.Ordinal));
             }
@@ -150,7 +151,7 @@ namespace LPAppServiceHMACAuthentication.Filters
             DateTime epochStart = new DateTime(1970, 01, 01, 0, 0, 0, 0, DateTimeKind.Utc);
             TimeSpan currentTs = DateTime.UtcNow - epochStart;
 
-            var serverTotalSeconds = Convert.ToUInt64(currentTs.TotalSeconds);
+            var serverTotalSeconds = Convert.ToUInt64(currentTs.TotalMilliseconds);
             var requestTotalSeconds = Convert.ToUInt64(requestTimeStamp);
 
             if ((serverTotalSeconds - requestTotalSeconds) > requestMaxAgeInSeconds)
@@ -169,6 +170,8 @@ namespace LPAppServiceHMACAuthentication.Filters
             {
                 byte[] hash = null;
                 var content = await httpContent.ReadAsByteArrayAsync();
+               // byte[] contentbytes = Encoding.Unicode.GetBytes(content);
+
                 if (content.Length != 0)
                 {
                     hash = md5.ComputeHash(content);
