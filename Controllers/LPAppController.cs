@@ -28,7 +28,7 @@ using LPAppServiceHMACAuthentication.Filters;
 
 namespace LPAppService.Controllers
 {
-   [lpHMACAuthenticationAttribute]
+  [lpHMACAuthenticationAttribute]
     [RoutePrefix("api/LPAppController")]
     public class LPAppController : ApiController
     {

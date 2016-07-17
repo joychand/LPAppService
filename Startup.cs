@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Owin;
 using Owin;
+using Microsoft.Owin.Cors;
 using System.Configuration;
 using Microsoft.Owin.Security.DataHandler.Encoder;
 using Microsoft.Owin.Security.Jwt;
@@ -29,7 +30,7 @@ namespace LPAppService
             // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=316888
             HttpConfiguration appconfig = new HttpConfiguration();
             //GlobalConfiguration.Configure(appconfig.Register);
-            ConfigureOAuthTokenConsumption(app);
+           // ConfigureOAuthTokenConsumption(app);
             ConfigureWebApi(appconfig);
            
             app.UseWebApi(appconfig);

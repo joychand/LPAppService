@@ -169,8 +169,9 @@ namespace LPAppServiceHMACAuthentication.Filters
             using (MD5 md5 = MD5.Create())
             {
                 byte[] hash = null;
+                //string content = await httpContent.ReadAsStringAsync().ConfigureAwait(false); 
                 var content = await httpContent.ReadAsByteArrayAsync();
-               // byte[] contentbytes = Encoding.Unicode.GetBytes(content);
+              // byte[] contentbytes = Encoding.UTF8.GetBytes(content);
 
                 if (content.Length != 0)
                 {
