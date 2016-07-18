@@ -202,6 +202,7 @@
     <Compile Include="Entities\Uniowner.cs" />
     <Compile Include="Entities\Uniplot.cs" />
     <Compile Include="Filters\lpHMACAuthenticationAttribute.cs" />
+    <Compile Include="Filters\ValidateModelAttribute.cs" />
     <Compile Include="Migrations\201604300552526_initialLP.cs" />
     <Compile Include="Migrations\201604300552526_initialLP.Designer.cs">
       <DependentUpon>201604300552526_initialLP.cs</DependentUpon>

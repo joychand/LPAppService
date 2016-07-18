@@ -218,7 +218,7 @@ namespace LPAppService.Controllers
         public HttpResponseMessage Jamabandi( PqModel pq)
         {
             HttpResponseMessage result = null;
-            string remoteUri = "http://igrmanipur.vagrantshare.com/jamabandi/api/patta/jamabandipdf.php";
+            string remoteUri = "http://10.178.0.4/lpapps/jamabandipdf.php";
             WebClient myWebClient = new WebClient();
             //myWebClient.UseDefaultCredentials = true;
            
