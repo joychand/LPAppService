@@ -20,7 +20,7 @@ namespace LPAppServiceHMACAuthentication.Filters
     public class lpHMACAuthenticationAttribute : Attribute, IAuthenticationFilter
     {
         private static Dictionary<string, string> allowedApps = new Dictionary<string, string>();
-        private readonly UInt64 requestMaxAgeInSeconds = 300000;  //5 mins
+        private readonly UInt64 requestMaxAgeInSeconds = 600000;  //10 mins
         private readonly string authenticationScheme = "amx";
 
         public lpHMACAuthenticationAttribute()
@@ -159,7 +159,7 @@ namespace LPAppServiceHMACAuthentication.Filters
                 return true;
             }
 
-            System.Runtime.Caching.MemoryCache.Default.Add(nonce, requestTimeStamp, DateTimeOffset.UtcNow.AddSeconds(requestMaxAgeInSeconds));
+            System.Runtime.Caching.MemoryCache.Default.Add(nonce, requestTimeStamp, DateTimeOffset.UtcNow.AddMilliseconds(requestMaxAgeInSeconds));
 
             return false;
         }

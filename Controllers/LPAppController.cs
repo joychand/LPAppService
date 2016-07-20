@@ -15,14 +15,14 @@ using System.Web.Http.Results;
 using eSiroi.Resource.Models;
 using System.Data;
 using System.Web;
-using iTextSharp.text.pdf;
-using iTextSharp.text;
+//using iTextSharp.text.pdf;
+//using iTextSharp.text;
 
 
 using System.IO;
 using System.Net.Http.Headers;
-using System.Text;
-using Aspose.Pdf.Generator;
+//using System.Text;
+//using Aspose.Pdf.Generator;
 using System.Collections.Specialized;
 using LPAppServiceHMACAuthentication.Filters;
 
@@ -215,13 +215,13 @@ namespace LPAppService.Controllers
 
         [HttpPost]
         [Route("Jamabandi")]
-        public HttpResponseMessage Jamabandi( PqModel pq)
+        public HttpResponseMessage Jamabandi(PqModel pq)
         {
             HttpResponseMessage result = null;
             string remoteUri = "http://10.178.0.4/lpapps/jamabandipdf.php";
             WebClient myWebClient = new WebClient();
             //myWebClient.UseDefaultCredentials = true;
-           
+
             NameValueCollection myQueryStringCollection = new NameValueCollection();
             myQueryStringCollection.Add("l", pq.LocCd);
             myQueryStringCollection.Add("p", pq.NewPattaNo);
