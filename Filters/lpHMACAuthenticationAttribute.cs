@@ -20,7 +20,7 @@ namespace LPAppServiceHMACAuthentication.Filters
     public class lpHMACAuthenticationAttribute : Attribute, IAuthenticationFilter
     {
         private static Dictionary<string, string> allowedApps = new Dictionary<string, string>();
-        private readonly UInt64 requestMaxAgeInSeconds = 600000;  //10 mins
+        private readonly UInt64 requestMaxAgeInSeconds = 600;  //10 mins
         private readonly string authenticationScheme = "amx";
 
         public lpHMACAuthenticationAttribute()
@@ -48,7 +48,7 @@ namespace LPAppServiceHMACAuthentication.Filters
                     var nonce = autherizationHeaderArray[2];
                     var requestTimeStamp = autherizationHeaderArray[3];
 
-                    var isValid = isValidRequest(req, APPId, incomingBase64Signature, nonce, requestTimeStamp);
+                    var isValid =  isValidRequest(req, APPId, incomingBase64Signature, nonce, requestTimeStamp);
 
                     if (isValid.Result)
                     {
@@ -118,7 +118,8 @@ namespace LPAppServiceHMACAuthentication.Filters
                 return false;
             }
 
-            byte[] hash = await ComputeHash(req.Content);
+           byte[] hash = await ComputeHash(req.Content);
+          //  byte[] hash =  ComputeHash(req.Content);
 
             if (hash != null)
             {
@@ -150,8 +151,8 @@ namespace LPAppServiceHMACAuthentication.Filters
 
             DateTime epochStart = new DateTime(1970, 01, 01, 0, 0, 0, 0, DateTimeKind.Utc);
             TimeSpan currentTs = DateTime.UtcNow - epochStart;
-
-            var serverTotalSeconds = Convert.ToUInt64(currentTs.TotalMilliseconds);
+            //TimeSpan requestTs = TimeSpan.Parse(requestTimeStamp);
+            var serverTotalSeconds = Convert.ToUInt64(currentTs.TotalSeconds);
             var requestTotalSeconds = Convert.ToUInt64(requestTimeStamp);
 
             if ((serverTotalSeconds - requestTotalSeconds) > requestMaxAgeInSeconds)
@@ -159,25 +160,26 @@ namespace LPAppServiceHMACAuthentication.Filters
                 return true;
             }
 
-            System.Runtime.Caching.MemoryCache.Default.Add(nonce, requestTimeStamp, DateTimeOffset.UtcNow.AddMilliseconds(requestMaxAgeInSeconds));
+            System.Runtime.Caching.MemoryCache.Default.Add(nonce, requestTimeStamp, DateTimeOffset.UtcNow.AddSeconds(requestMaxAgeInSeconds));
 
             return false;
         }
 
-        private static async Task<byte[]> ComputeHash(HttpContent httpContent)
+        private static async  Task<byte[]> ComputeHash(HttpContent httpContent)
         {
             using (MD5 md5 = MD5.Create())
             {
                 byte[] hash = null;
                 //string content = await httpContent.ReadAsStringAsync().ConfigureAwait(false); 
                 var content = await httpContent.ReadAsByteArrayAsync();
+               
               // byte[] contentbytes = Encoding.UTF8.GetBytes(content);
 
                 if (content.Length != 0)
                 {
-                    hash = md5.ComputeHash(content);
+                    hash =  md5.ComputeHash(content);
                 }
-                return hash;
+                return   hash;
             }
         }
     }

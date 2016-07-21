@@ -14,6 +14,7 @@ using System.Net.Http.Formatting;
 using System.Linq;
 //using Microsoft.AspNet.WebApi.Cors;
 using Newtonsoft.Json.Serialization;
+using LPAppService.Filters;
 
 
 [assembly: OwinStartup(typeof(LPAppService.Startup))]
@@ -45,7 +46,7 @@ namespace LPAppService
                   routeTemplate: "api/{controller}/{id}",
                   defaults: new { id = RouteParameter.Optional }
               );
-
+            config.Filters.Add(new ValidateModelAttribute());
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 

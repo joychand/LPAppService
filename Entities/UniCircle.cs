@@ -10,13 +10,16 @@ namespace LPAppService.Entities
     public partial class UniCircle
     {
         [StringLength(2)]
+        [RegularExpression(@"^[0-9]*$")]
         public string distcode { get; set; }
 
         [StringLength(2)]
+        [RegularExpression(@"^[0-9]*$")]
         public string subcode { get; set; }
 
         [Key]
         [StringLength(3)]
+        [RegularExpression(@"^[0-9]*$")]
         public string circode { get; set; }
 
         [StringLength(50)]

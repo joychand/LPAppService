@@ -11,6 +11,7 @@ namespace LPAppService.Entities
     {
         [Key]
         [StringLength(10)]
+        [RegularExpression(@"^[0-9]*$")]
         public string LocCd { get; set; }
 
         [StringLength(100)]
