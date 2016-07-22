@@ -4,15 +4,14 @@ using Microsoft.Owin;
 using Owin;
 using Microsoft.Owin.Cors;
 using System.Configuration;
-using Microsoft.Owin.Security.DataHandler.Encoder;
-using Microsoft.Owin.Security.Jwt;
+
+
 using Microsoft.Owin.Security;
 using System.Web.Http;
-//using eSiroi.Resource.App_Start;
-using Microsoft.Owin.Security.OAuth;
+
 using System.Net.Http.Formatting;
 using System.Linq;
-//using Microsoft.AspNet.WebApi.Cors;
+
 using Newtonsoft.Json.Serialization;
 using LPAppService.Filters;
 

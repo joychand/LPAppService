@@ -15,16 +15,11 @@ using System.Web.Http.Results;
 using eSiroi.Resource.Models;
 using System.Data;
 using System.Web;
-//using iTextSharp.text.pdf;
-//using iTextSharp.text;
-
 
 using System.IO;
 using System.Net.Http.Headers;
-//using System.Text;
-//using Aspose.Pdf.Generator;
 using System.Collections.Specialized;
-using LPAppServiceHMACAuthentication.Filters;
+
 using LPAppService.Filters;
 
 namespace LPAppService.Controllers
@@ -70,11 +65,7 @@ namespace LPAppService.Controllers
         [ValidateModel]
         public IHttpActionResult postVillage(UniCircle circ)
         {
-            //VAR DISTCODE="07";
-            //VAR SUBCODE="01";
-            //VAR CIRCODE = "002";
-            //002
-            //IEnumerable<UniLocation> vlist;
+           
            var vlist = db.UniLocation
                 .Where(l => l.LocCd.Substring(0, 7).Equals(circ.distcode + circ.subcode + circ.circode));
            if (vlist.Any())

@@ -15,7 +15,7 @@ using System.Web.Http;
 using System.Web.Http.Filters;
 using System.Web.Http.Results;
 
-namespace LPAppServiceHMACAuthentication.Filters
+namespace LPAppService.Filters
 {
     public class lpHMACAuthenticationAttribute : Attribute, IAuthenticationFilter
     {
