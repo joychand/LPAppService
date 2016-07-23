@@ -23,18 +23,20 @@ using LPAppService.Filters;
 
 namespace LPAppService.Controllers
 {
- [lpHMACAuthenticationAttribute]
+    //[lpHMACAuthenticationAttribute]
+    //[ExceptionHandlingAttribute]
     [RoutePrefix("api/LPAppController")]
     public class LPAppController : ApiController
     {
         private LpDbContext db = new LpDbContext();
         #region PattaQuery
         //get district
+        // [ExceptionHandlingAttribute]
         [HttpGet]
         [Route("getDistrict")]
-        public IEnumerable<UniDistrict> getdistrict()
+        public IHttpActionResult getdistrict()
         {
-            return db.UniDistrict;
+            return Ok (db.UniDistrict);
         }
         [HttpGet]
         [Route("{dcode:regex(^[0-9]{2,2}$)}/getCircle")]
@@ -61,7 +63,7 @@ namespace LPAppService.Controllers
         //getVillage
         [HttpPost]
         [Route("postVillage")]
-        [ValidateModel]
+        //[ValidateModel]
         public IHttpActionResult postVillage(UniCircle circ)
         {
            

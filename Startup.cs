@@ -43,7 +43,9 @@ namespace LPAppService
                   routeTemplate: "api/{controller}/{id}",
                   defaults: new { id = RouteParameter.Optional }
               );
-            config.Filters.Add(new ValidateModelAttribute());
+            config.Filters.Add(new LPAppService.Filters.ValidateModelAttribute());
+            config.Filters.Add(new LPAppService.Filters.ExceptionHandlingAttribute());
+
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
