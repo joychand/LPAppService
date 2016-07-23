@@ -26,15 +26,13 @@ namespace LPAppService
         public void Configuration(IAppBuilder app)
         {
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
-            //app.UseErrorPage();
-            // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=316888
+           
             HttpConfiguration appconfig = new HttpConfiguration();
-            //GlobalConfiguration.Configure(appconfig.Register);
-           // ConfigureOAuthTokenConsumption(app);
+           
             ConfigureWebApi(appconfig);
            
             app.UseWebApi(appconfig);
-            //app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+          
          
         }
         private void ConfigureWebApi(HttpConfiguration config)
@@ -52,28 +50,6 @@ namespace LPAppService
         }
 
 
-        //private void ConfigureOAuthTokenConsumption(IAppBuilder app)
-        //{
-
-        //    var issuer = "http://manipurtemp12.nic.in/eSiroi.Authentication";
-        //    string audienceId = ConfigurationManager.AppSettings["as:AudienceId"];
-        //    byte[] audienceSecret = TextEncodings.Base64Url.Decode(ConfigurationManager.AppSettings["as:AudienceSecret"]);
-
-        //    // Api controllers with an [Authorize] attribute will be validated with JWT
-           
-        //        app.UseJwtBearerAuthentication(
-        //        new JwtBearerAuthenticationOptions
-        //        {
-        //            AuthenticationMode = AuthenticationMode.Active,
-        //            AllowedAudiences = new[] { audienceId },
-        //            IssuerSecurityTokenProviders = new IIssuerSecurityTokenProvider[]
-        //            {
-        //                new SymmetricKeyIssuerSecurityTokenProvider(issuer, audienceSecret)
-        //            }
-        //        });
-            
-            
-        //}
-        ////public static OAuthBearerAuthenticationOptions OAuthBearerOptions { get; private set; }
+     
     }
 }

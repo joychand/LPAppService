@@ -7,8 +7,7 @@ using System.Web.Http;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using LPAppService.Entities;
-//using eSiroi.Resource.Migrations.Entities;
-//using eSiroi.Resource.Repository;
+
 using System.Web.Http.Description;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
