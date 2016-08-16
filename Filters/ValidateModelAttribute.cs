@@ -12,7 +12,7 @@ namespace LPAppService.Filters
     {
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
-            var errormessage = "Input Parameters are invalid";
+            var errormessage = "Request Parameters are invalid";
             if (actionContext.ModelState.IsValid == false)
             {
                 //actionContext.Response = actionContext.Request.CreateErrorResponse(

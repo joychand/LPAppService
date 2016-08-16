@@ -14,6 +14,7 @@ using System.Linq;
 
 using Newtonsoft.Json.Serialization;
 using LPAppService.Filters;
+using System.Web.Http.ExceptionHandling;
 
 
 [assembly: OwinStartup(typeof(LPAppService.Startup))]
@@ -25,7 +26,7 @@ namespace LPAppService
        
         public void Configuration(IAppBuilder app)
         {
-            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+           // app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
            
             HttpConfiguration appconfig = new HttpConfiguration();
            
@@ -43,11 +44,19 @@ namespace LPAppService
                   routeTemplate: "api/{controller}/{id}",
                   defaults: new { id = RouteParameter.Optional }
               );
-            config.Filters.Add(new LPAppService.Filters.ValidateModelAttribute());
-            config.Filters.Add(new LPAppService.Filters.ExceptionHandlingAttribute());
 
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            
+
+            config.Filters.Add(new LPAppService.Filters.ValidateModelAttribute());
+            config.Filters.Add(new LPAppService.Filters.ExceptionHandlingAttribute());
+            config.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler());
+           // SETTINGS FOR PRODUCTION
+            config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Never;
+
+           
 
         }
 
